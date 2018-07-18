@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <h1>Template Form</h1>
+      <form (ngSubmit)="onFormSubmit(myForm)" #myForm="ngForm">
+        <div class="form-group">
+          <label for="MailAddress">Mail Address</label>
+          <input type="text" name="MailAddress" class="form-control" placeholder="Email Address" required email ngModel #mailAddr="ngModel" >
+          <div *ngIf="!mailAddr.valid && mailAddr.touched" class="warning">Email Address is invalid</div>
+        </div>
+        <div class="form-group">
+          <label for="Subscription">Subscription</label>
+          <select name="Subscription" id="Subscription" class="form-control" [ngModel]="selectedSubscription" required #subscription="ngModel">
+            <option *ngFor="let subscription of subscriptions" [value]="subscription">
+              {{subscription}}</option>
+          </select>
+          <div *ngIf="!subscription.valid && subscription.touched" class="warning">Please select a subscription</div>
+        </div>
+        <div class="form-group">
+          <label for="Password">Password</label>
+          <input type="password" name="Password" class="form-control" ngModel required #password="ngModel">
+          <div *ngIf="!password.valid && password.touched" class="warning">Password cannot be empty</div>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Submit</button>
+          <button type="reset" class="btn btn-default">Reset</button>
+        </div>
+        <div class="warning" *ngIf="!myForm.valid && myForm.touched">
+          Please provide all valid values. Form is invalid
+        </div>
+      </form>
+      <div *ngIf="isFormSubmitted">
+        <div><strong>Form is submitted</strong></div>
+        <div>Your mail address is {{myForm.value.MailAddress}}</div>
+        <div>Subscription selected is {{myForm.value.Subscription}}</div>
+        <div>Your password is {{myForm.value.Password}}</div>
+      </div>
+    </div>    
+  </div>
