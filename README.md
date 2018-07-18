@@ -1,2 +1,2 @@
-# TemplateDrivenFormDemo
-Angular 2 template driven form demo
+# TemplateVsReactiveFormDemo
+Angular 2 template vs reactive driven form demo
